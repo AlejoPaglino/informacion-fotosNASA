@@ -1,1 +1,29 @@
-<h1>Foto Astronómica del Día (APOD)</h1>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Foto Astronómica por Fecha - NASA</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Foto Astronómica del Día (APOD)</h1>
+<h2>coloca la fecha y busca la Foto de la NASA</h2>
+  </header>
+
+  <main>
+    <section class="buscador">
+      <label for="fecha">Selecciona una fecha:</label>
+      <input type="date" id="fecha" max="">
+      <button id="buscarBtn">Buscar</button>
+    </section>
+
+    <section id="resultado" class="resultado"></section>
+    <p id="error" class="error"></p>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
