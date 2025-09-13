@@ -5,28 +5,74 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Foto Astronómica por Rango de Fechas - NASA</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+  
+    #paginaInicio {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background: linear-gradient(to right, #000428, #004e92);
+      color: white;
+      text-align: center;
+    }
+
+    #paginaInicio button {
+      padding: 10px 20px;
+      font-size: 1.2em;
+      margin-top: 20px;
+      cursor: pointer;
+      background-color: #ffcc00;
+      border: none;
+      border-radius: 5px;
+    }
+
+    #paginaPrincipal {
+      display: none; 
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <h1>Foto Astronómica del Día (APOD)</h1>
-    <h2>Coloca un rango de fechas y busca las fotos de la NASA</h2>
-  </header>
 
-  <main>
-    <section class="buscador">
-      <label for="fechaInicio">Fecha inicio:</label>
-      <input type="date" id="fechaInicio" max="">
 
-      <label for="fechaFin">Fecha fin:</label>
-      <input type="date" id="fechaFin" max="">
+  <div id="paginaInicio">
+    <h1>Bienvenido a APOD Viewer</h1>
+    <p>Explora las Fotos Astronómicas del Día de la NASA</p>
+    <button onclick="mostrarPaginaPrincipal()">Ingresar</button>
+  </div>
 
-      <button id="buscarBtn">Buscar</button>
-    </section>
 
-    <section id="resultado" class="resultado"></section>
-    <p id="error" class="error"></p>
-  </main>
+  <div id="paginaPrincipal">
+    <header>
+      <h1>Foto Astronómica del Día (APOD)</h1>
+      <h2>Coloca un rango de fechas y busca las fotos de la NASA</h2>
+    </header>
 
-  <script src="script2.js"></script>
+    <main>
+      <section class="buscador">
+        <label for="fechaInicio">Fecha inicio:</label>
+        <input type="date" id="fechaInicio" max="">
+
+        <label for="fechaFin">Fecha fin:</label>
+        <input type="date" id="fechaFin" max="">
+
+        <button id="buscarBtn">Buscar</button>
+      </section>
+
+      <section id="resultado" class="resultado"></section>
+      <p id="error" class="error"></p>
+    </main>
+  </div>
+
+ 
+  <script>
+    function mostrarPaginaPrincipal() {
+      document.getElementById('paginaInicio').style.display = 'none';
+      document.getElementById('paginaPrincipal').style.display = 'block';
+    }
+  </script>
+
+  <script src="script.js"></script>
 </body>
 </html>
