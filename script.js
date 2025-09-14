@@ -27,7 +27,7 @@ function obtenerFoto(url) {
     .then(res => res.json())
     .then(data => {
       if (data.media_type !== "image") {
-        mostrarError("El contenido en esta fecha no es una imagen.");
+        mostrarError("esta fecha todavia no ha llegado.");
         return;
       }
 
