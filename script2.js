@@ -38,7 +38,7 @@ function obtenerFotos(url) {
       resultado.innerHTML = "";
 
       if (!Array.isArray(data)) {
-        mostrarError("esta fecha todavia no ha llegado.");
+        mostrarError("Esta fecha todavia no ha llegado.");
         return;
       }
 
