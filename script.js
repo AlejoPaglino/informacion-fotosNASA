@@ -49,3 +49,4 @@ function mostrarError(msg) {
   resultado.innerHTML = "";
   error.textContent = msg;
 }
+
