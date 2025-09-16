@@ -5,7 +5,7 @@ const buscarBtn = document.getElementById("buscarBtn");
 const resultado = document.getElementById("resultado");
 const error = document.getElementById("error");
 
-// Limitar fechas al día actual
+
 const hoy = new Date().toISOString().split("T")[0];
 fechaInicioInput.max = hoy;
 fechaFinInput.max = hoy;

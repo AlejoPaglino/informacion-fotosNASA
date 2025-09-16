@@ -1,10 +1,10 @@
-const API_KEY = "DEMO_KEY"; // Reemplaza por tu API Key si tienes una
+const API_KEY = "DEMO_KEY"; 
 const fechaInput = document.getElementById("fecha");
 const buscarBtn = document.getElementById("buscarBtn");
 const resultado = document.getElementById("resultado");
 const error = document.getElementById("error");
 
-// Establecer fecha máxima (hoy)
+
 fechaInput.max = new Date().toISOString().split("T")[0];
 
 buscarBtn.addEventListener("click", () => {
