@@ -13,3 +13,21 @@ botonCantidad.onclick = function () {
     }
 })
 }
+
+botonAleatoria.onclick = function() {
+    limpiarContenedor();
+    let fechaInicio = new Date(1995, 5, 16); 
+    let fechaFin = new Date(); let fechaAleatoria = new Date(fechaInicio.getTime() + Math.random() * (fechaFin.getTime() - fechaInicio.getTime())); 
+    let fechaFormateada = fechaAleatoria.toISOString().split('T')[0]; 
+    fetch(`${urlBase}${clave}&date=${fechaFormateada}`) 
+    .then(res => res.json()) 
+    .then(data => { 
+        if (data.media_type === "image") 
+        { mostrarImagen(data.url, data.title); } 
+        else { mostrarImagen('https://via.placeholder.com/800x600?text=Contenido+no+disponible', 'Contenido no disponible'); 
+    } }) .catch(err => { 
+        console.error("Error al obtener imagen aleatoria:", err); 
+    }); 
+};
+
+
