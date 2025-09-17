@@ -1,6 +1,15 @@
-const API_KEY = "DEMO_KEY";  
-const fechaInicioInput = document.getElementById("fechaHoy");
-const fechaFinInput = document.getElementById("fecha20AñosAtras");
-const buscarBtn = document.getElementById("buscarBtn");
-const resultado = document.getElementById("resultado");
-const error = document.getElementById("error");
+let contenedorImagen = document.querySelector(".contenedor")
+let botonCantidad = document.querySelector("#botonCantidad")
+let cantidadUsuario = document.querySelector("#cantidad")
+
+botonCantidad.onclick = function () {
+    console.log(cantidadUsuario.value)
+    fetch (`https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY=${key}&count=${cantidadUsuario.value}`)
+    .then(res => res.json())
+    .then(fotos => {
+        contenedorImagen.innerHTML = ""
+        for (let i = 0; i < fotos.length; i++) {
+             contenedorImagen.innerHTML = `${contenedorImagen.innerHTML} <img scr="${fotos[i].url}" alt="${fotos[i].title}"`
+    }
+})
+}
