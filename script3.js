@@ -19,12 +19,12 @@ botonAleatoria.onclick = function() {
     let fechaInicio = new Date(1995, 5, 16); 
     let fechaFin = new Date(); let fechaAleatoria = new Date(fechaInicio.getTime() + Math.random() * (fechaFin.getTime() - fechaInicio.getTime())); 
     let fechaFormateada = fechaAleatoria.toISOString().split('T')[0]; 
-    fetch(`${urlBase}${clave}&date=${fechaFormateada}`) 
+    fetch(`https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&count=10`) 
     .then(res => res.json()) 
     .then(data => { 
         if (data.media_type === "image") 
         { mostrarImagen(data.url, data.title); } 
-        else { mostrarImagen('https://via.placeholder.com/800x600?text=Contenido+no+disponible', 'Contenido no disponible'); 
+        else { mostrarImagen(''); 
     } }) .catch(err => { 
         console.error("Error al obtener imagen aleatoria:", err); 
     }); 
