@@ -1,33 +1,38 @@
-let contenedorImagen = document.querySelector(".contenedor")
-let botonCantidad = document.querySelector("#botonCantidad")
-let cantidadUsuario = document.querySelector("#cantidad")
+let botonAleatoria = document.getElementById("botonAleatoria");
+let resultado = document.getElementById("resultado");
+let API_KEY = "DEMO_KEY"; 
+let BASE_URL = "https://api.nasa.gov/planetary/apod";
 
-botonCantidad.onclick = function () {
-    console.log(cantidadUsuario.value)
-    fetch (`https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY=${key}&count=${cantidadUsuario.value}`)
-    .then(res => res.json())
-    .then(fotos => {
-        contenedorImagen.innerHTML = ""
-        for (let i = 0; i < fotos.length; i++) {
-             contenedorImagen.innerHTML = `${contenedorImagen.innerHTML} <img scr="${fotos[i].url}" alt="${fotos[i].title}"`
-    }
-})
+function limpiarContenedor() {
+  resultado.innerHTML = "";
 }
+function mostrarImagen(url, titulo, fecha) {
+  resultado.innerHTML = `
+    <div class="card">
+      <h3>${titulo || "Sin título"}</h3>
+      <img src="${url}" alt="${titulo || "APOD"}">
+      <p>${fecha || ""}</p>
+    </div>
+  `;
+}
+botonAleatoria.onclick = function () {
+  limpiarContenedor();
+  resultado.innerHTML = "<p>Cargando...</p>";
 
-botonAleatoria.onclick = function() {
-    limpiarContenedor();
-    let fechaInicio = new Date(1995, 5, 16); 
-    let fechaFin = new Date(); let fechaAleatoria = new Date(fechaInicio.getTime() + Math.random() * (fechaFin.getTime() - fechaInicio.getTime())); 
-    let fechaFormateada = fechaAleatoria.toISOString().split('T')[0]; 
-    fetch(`https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&count=10`) 
-    .then(res => res.json()) 
-    .then(data => { 
-        if (data.media_type === "image") 
-        { mostrarImagen(data.url, data.title); } 
-        else { mostrarImagen(''); 
-    } }) .catch(err => { 
-        console.error("Error al obtener imagen aleatoria:", err); 
-    }); 
+  fetch(BASE_URL + "?api_key=" + API_KEY + "&count=1&thumbs=true")
+    .then(function (res) {
+      
+      return res.json();
+    })
+    .then(function (data) {
+      let item = data[0];
+      if (item.media_type === "image") {
+        mostrarImagen(item.url, item.title, item.date);
+      } else if (item.media_type === "video") {
+        mostrarImagen(item.thumbnail_url || "", (item.title || "APOD") + " (video)", item.date);
+      } else {
+        resultado.innerHTML = "<p class='error'>Tipo de medio no soportado.</p>";
+      }
+    })
+
 };
-
-
